@@ -97,14 +97,18 @@ class ReturnOperation extends BaseOperation
         if (!empty($emailFrom) && count($emails) > 0) {
             try {
                 foreach ($emails as $email) {
-                    MessagesClient::sendMessage([
-                        MessageTypes::EMAIL => [
-                            'emailFrom' => $emailFrom,
-                            'emailTo' => $email,
-                            'subject' => ['complaintEmployeeEmailSubject', $templateData, $resellerId],
-                            'message' => ['complaintEmployeeEmailBody', $templateData, $resellerId],
+                    MessagesClient::sendMessage(
+                        [
+                            MessageTypes::EMAIL => [
+                                'emailFrom' => $emailFrom,
+                                'emailTo' => $email,
+                                'subject' => ['complaintEmployeeEmailSubject', $templateData, $resellerId],
+                                'message' => ['complaintEmployeeEmailBody', $templateData, $resellerId],
+                            ],
                         ],
-                    ], $resellerId, NotificationEvents::NEW_RETURN_STATUS);
+                        $resellerId,
+                        NotificationEvents::NEW_RETURN_STATUS
+                    );
                 }
             } catch (\Exception $exception) {
                 throw new \Exception($exception->getMessage(), $exception->getCode());
