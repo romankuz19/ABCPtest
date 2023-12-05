@@ -2,7 +2,7 @@
 
 namespace NW\WebService\References\Operations;
 
-abstract class ReferencesOperation
+abstract class BaseOperation
 {
     abstract public function doOperation(): array;
 

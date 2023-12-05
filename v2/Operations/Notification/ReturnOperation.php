@@ -4,13 +4,13 @@ namespace NW\WebService\References\Operations\Notification;
 
 use NW\WebService\References\Messages\MessagesClient;
 use NW\WebService\References\Messages\MessageTypes;
-use NW\WebService\References\Operations\ReferencesOperation;
+use NW\WebService\References\Operations\BaseOperation;
 use NW\WebService\References\Roles\{CounterAgent, Seller};
 use NW\WebService\References\Roles\Employee\{Creator, Expert,};
 use NW\WebService\References\Validation\RequestParamsValidate;
 use NW\WebService\References\Validation\RolesValidate;
 
-class TsReturnOperation extends ReferencesOperation
+class ReturnOperation extends BaseOperation
 {
     public const TYPE_NEW    = 1;
     public const TYPE_CHANGE = 2;
