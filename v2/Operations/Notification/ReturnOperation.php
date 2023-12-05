@@ -117,14 +117,20 @@ class ReturnOperation extends BaseOperation
         if ($notificationType === self::TYPE_CHANGE && isset($data['differences']['to'])) {
             if (!empty($emailFrom) && !is_null($client->getEmail())) {
                 try {
-                    MessagesClient::sendMessage([
-                        MessageTypes::EMAIL => [
-                            'emailFrom' => $emailFrom,
-                            'emailTo'   => $client->getEmail(),
-                            'subject'   => ['complaintClientEmailSubject', $templateData, $resellerId],
-                            'message'   => ['complaintClientEmailBody', $templateData, $resellerId],
+                    MessagesClient::sendMessage(
+                        [
+                            MessageTypes::EMAIL => [
+                                'emailFrom' => $emailFrom,
+                                'emailTo'   => $client->getEmail(),
+                                'subject'   => ['complaintClientEmailSubject', $templateData, $resellerId],
+                                'message'   => ['complaintClientEmailBody', $templateData, $resellerId],
+                            ],
                         ],
-                    ], $resellerId, NotificationEvents::CHANGE_RETURN_STATUS, $clientId, (int)$data['differences']['to']);
+                        $resellerId,
+                        NotificationEvents::CHANGE_RETURN_STATUS,
+                        $clientId,
+                        (int)$data['differences']['to']
+                    );
                 } catch (\Exception $exception) {
                     throw new \Exception($exception->getMessage(), $exception->getCode());
                 }
