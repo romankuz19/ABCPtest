@@ -2,9 +2,6 @@
 
 namespace NW\WebService\References\Roles;
 
-/**
- * @property Seller $Seller
- */
 class CounterAgent
 {
     public const TYPE_CUSTOMER = 0;
@@ -24,6 +21,9 @@ class CounterAgent
     /** @var string|null */
     protected $mobile;
 
+    /** @var Seller */
+    protected $seller;
+
     /**
      * @param int $resellerId
      * @return self|null
@@ -39,23 +39,6 @@ class CounterAgent
     public function getFullName(): string
     {
         return $this->getName() . ' ' . $this->getId();
-    }
-
-    /**
-     * @return Seller
-     */
-    public function getSeller(): Seller
-    {
-        return $this->Seller;
-    }
-
-    /**
-     * @param Seller $Seller
-     * @return void
-     */
-    public function setSeller(Seller $Seller): void
-    {
-        $this->Seller = $Seller;
     }
 
     /**
@@ -132,6 +115,23 @@ class CounterAgent
     public function setMobile(?string $mobile): void
     {
         $this->mobile = $mobile;
+    }
+
+    /**
+     * @return Seller
+     */
+    public function getSeller(): Seller
+    {
+        return $this->seller;
+    }
+
+    /**
+     * @param Seller $seller
+     * @return void
+     */
+    public function setSeller(Seller $seller): void
+    {
+        $this->seller = $seller;
     }
 
 }

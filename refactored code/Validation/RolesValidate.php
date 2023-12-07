@@ -19,7 +19,7 @@ class RolesValidate
     public static function validateClient(?CounterAgent $client, int $resellerId): void
     {
         if (is_null($client) || $client->getType() !== CounterAgent::TYPE_CUSTOMER
-            || $client->Seller->getId() !== $resellerId
+            || $client->getSeller()->getId() !== $resellerId
         ) {
             throw new \Exception('Client not found!', 400);
         }
